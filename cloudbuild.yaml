@@ -5,10 +5,13 @@ steps:
 - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
   entrypoint: 'bash'
   args:
+- options:
+  logging: NONE 
+     
   - '-c'
   - > 
     gcloud deploy releases create release-$BUILD_ID
     --delivery-pipeline=hello-world-app
     --region=us-central1
     --source=./
-    --images=hello-world-app=us-central1-docker.pkg.dev/$PROJECT_ID/my-docker-repo/hello-world:$SHORT_SHA
+    --images=hello-world-app=us-central1-docker.pkg.dev/$PROJECT_ID/my-docker-repo/hello-world:$SHORT_SHA 
